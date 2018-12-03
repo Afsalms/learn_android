@@ -22,12 +22,12 @@ public class MainActivity extends AppCompatActivity {
 //        Button button = (Button) findViewById(R.id.);
         button_one = (Button) findViewById(R.id.button_first);
         result_text_view = (TextView) findViewById(R.id.result);
-        result_text_view.setText("0");
+        result_text_view.setText("");
 
         button_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result_text_view.setText("1");
+                result_text_view.setText(result_text_view.getText()+"1");
             }
         });
     }
