@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         button_plus, button_minus, button_multiply, button_divide,
         button_equals;
     EditText result_text_view;
+    String operator;
+    Float operant1, operant2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         button_zero = (Button) findViewById(R.id.button_zero);
         button_dot = (Button) findViewById(R.id.button_dot);
         button_c = (Button) findViewById(R.id.button_clear);
+        button_plus = (Button) findViewById(R.id.button_plus);
+        button_minus = (Button) findViewById(R.id.button_minus);
+        button_multiply = (Button) findViewById(R.id.button_multiply);
+        button_divide = (Button) findViewById(R.id.button_division);
+        button_equals = (Button) findViewById(R.id.button_result);
         result_text_view = (EditText) findViewById(R.id.result);
         result_text_view.setText("");
 
@@ -117,6 +124,78 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 result_text_view.setText(null);
+                operant1 = Float.NaN;
+            }
+        });
+        button_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!(result_text_view.getText().toString().isEmpty())) {
+                    operant1 = Float.parseFloat(result_text_view.getText().toString());
+                    operator = "+";
+                    result_text_view.setText(null);
+                }
+
+            }
+        });
+        button_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!(result_text_view.getText().toString().isEmpty())) {
+                    operant1 = Float.parseFloat(result_text_view.getText().toString());
+                    operator = "-";
+                    result_text_view.setText(null);
+                }
+
+            }
+        });
+        button_multiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!(result_text_view.getText().toString().isEmpty())) {
+                    operant1 = Float.parseFloat(result_text_view.getText().toString());
+                    operator = "*";
+                    result_text_view.setText(null);
+                }
+
+            }
+        });
+        button_divide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!(result_text_view.getText().toString().isEmpty())) {
+                    operant1 = Float.parseFloat(result_text_view.getText().toString());
+                    operator = "/";
+                    result_text_view.setText(null);
+                }
+
+            }
+        });
+        button_equals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((!operant1.isNaN()) & !(operator.isEmpty())){
+                    operant2 = Float.parseFloat(result_text_view.getText().toString());
+                    if (operant2.isNaN()){
+                        operant2 = Float.parseFloat("0.0");
+                    }
+                    Float result;
+                    if (operator == "+"){
+                        result = operant1 + operant2;
+                    }
+                    else if(operator == "-"){
+                        result = operant1 - operant2;
+                    }
+                    else if (operator == "*"){
+                        result = operant1 * operant2;
+                    }
+                    else{
+                        result = operant1/ operant2;
+                    }
+                    result_text_view.setText(result+"");
+                }
+
             }
         });
     }
