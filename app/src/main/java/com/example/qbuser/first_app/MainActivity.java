@@ -15,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
         button_plus, button_minus, button_multiply, button_divide,
         button_equals;
     EditText result_text_view;
-    String operator;
-    Float operant1, operant2;
+    String operator="";
+    Float operant1 = Float.NaN;
+    Float operant2 = Float.NaN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 result_text_view.setText(null);
                 operant1 = Float.NaN;
+                operant2 = Float.NaN;
+                operator = "";
             }
         });
         button_plus.setOnClickListener(new View.OnClickListener() {
