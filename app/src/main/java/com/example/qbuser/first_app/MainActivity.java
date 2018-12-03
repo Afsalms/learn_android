@@ -176,10 +176,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if ((!operant1.isNaN()) & !(operator.isEmpty())){
-                    operant2 = Float.parseFloat(result_text_view.getText().toString());
-                    if (operant2.isNaN()){
+                    try {
+                        operant2 = Float.parseFloat(result_text_view.getText().toString());
+                    }
+                    catch (Exception e){
                         operant2 = Float.parseFloat("0.0");
                     }
+
                     Float result;
                     if (operator == "+"){
                         result = operant1 + operant2;
@@ -191,9 +194,20 @@ public class MainActivity extends AppCompatActivity {
                         result = operant1 * operant2;
                     }
                     else{
-                        result = operant1/ operant2;
+                        if (operant2 != 0.0){
+
+                            result = operant1/ operant2;
+                        }
+                        else{
+                            result = Float.NaN;
+                        }
                     }
-                    result_text_view.setText(result+"");
+                    if(!result.isNaN()){
+                        result_text_view.setText(result+"");
+                    }
+                    else{
+                        result_text_view.setText("Division by zero");
+                    }
                 }
 
             }
